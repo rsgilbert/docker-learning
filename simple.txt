@@ -1,0 +1,6 @@
+// List running containers 
+docker container ls 
+
+// List all containers 
+docker container ls -a 
+

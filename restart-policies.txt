@@ -1,0 +1,26 @@
+// https://docs.docker.com/config/containers/start-containers-automatically/
+
+// Run a container without specifying a restart policy 
+docker run -d alpine sleep infinity
+
+// Restart always 
+// Restart container if it stops or when docker daemon restarts 
+docker run -d --restart always alpine sleep infinity 
+
+// Restart container unless if it gets stopped 
+docker run -d --restart unless-stopped alpine
+
+// Run a container giving it a name 
+docker run -d --restart unless-stopped --name unless-16  alpine sleep infinity
+
+// Manually stop a container
+docker stop unless-16 
+
+
+
+
+
+
+
+
+

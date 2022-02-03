@@ -1,0 +1,3 @@
+// To make sure docker always starts when the computer is booted:
+Go to Startup apps
+Ensure that Docker Desktop is checked.

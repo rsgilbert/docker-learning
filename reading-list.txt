@@ -1,0 +1,10 @@
+// Keep a container running:
+https://stackoverflow.com/a/46898038/10030693
+
+
+// Restart policies
+https://docs.docker.com/config/containers/start-containers-automatically/
+
+
+
+
