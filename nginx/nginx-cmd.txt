@@ -1,0 +1,77 @@
+Get into alpine image 
+docker run -it alpine sh 
+
+// Create image based on a Dockerfile in this directory 
+docker build -t my-site-nginx . 
+
+// Run image built 
+docker run -d --name my-site-ctnr my-site-nginx 
+
+// Expose external port
+// nginx service at port 80 will be available at port 6080 on localhost 
+// my-site webpage will be available at http://localhost:6080 
+docker run --detach --name my-site-cntr2 -p 6080:80 my-site-nginx 
+
+// Copy nginx configuration in container my-site-ctnr2 to our folder here 
+docker cp my-site-ctnr2:/etc/nginx/nginx.conf ./my-nginx.conf 
+
+// Access shell of nginx container 
+docker exec -it my-site-ctnr2 sh 
+
+// Create a new image based on a container and its changes
+docker container commit my-site-ctnr2 rsgilbert/bienvenue-nginx 
+
+// Run newly created image 
+docker run -d -p 6081:80 rsgilbert/bienvenue-nginx 
+
+// Build another docker image that uses the created image rsgilbert/bienvenue-nginx but suplies a custom nginx.conf 
+ docker build -t rsgilbert/nginx-custom-conf .
+
+
+// Specifying a restart policy when starting a container 
+docker run -d -p 6083:80 on-failure:20 rsgilbert/nginx-custom-conf 231d349f7916
+
+// See logs coming from a container running nginx. Follow the logs 
+docker logs --follow 231d349f7916
+
+// Remove a docker container 
+docker container rm e7a503610745
+
+// Remove a docker image 
+docker image rm -f rsgilbert/nginx-custom-conf 
+
+
+// Remove all stopped containers 
+docker container prune 
+
+// Save an image to a file. The output is a tar archive but we can compress it further using zip 
+docker image save rsgilbert/bienvenue-img rsgilbert/bienvenue-nginx -o bienvenue-img.zip 
+
+// Compress the outputed image further. Its a tar archive initially
+// Powershell
+Compress-Archive .\bienvenue-img bi.zip 
+
+
+// Import image from tarball to create a file-system image 
+// Note: For some reason imported image is not runnable
+docker import bienvenue-img my-imported-bienvenue 
+
+
+// Start all containers related to the application stack defined in docker-compose.yml 
+docker-compose up 
+
+// Display running processes using docker-compose 
+docker-compose top 
+
+// list images
+docker-compose images 
+
+// Display running containers 
+docker-compose ps 
+
+// Copy default.conf configuration in a running container to host file system 
+docker cp nginx-compz_web_1:/etc/nginx/conf.d/custom.conf d2.conf
+
+
+
+

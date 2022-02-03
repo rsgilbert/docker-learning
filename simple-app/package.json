@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "gilberts <gssenyonjo@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "ronin-mocks": "^0.1.6",
+    "ronin-server": "^0.1.3"
+  }
 }

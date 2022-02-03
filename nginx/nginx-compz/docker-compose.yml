@@ -1,0 +1,16 @@
+# This function reads templates files in /etc/nginx/templates/*.template and 
+# outputs the result of executing envsubst to /etc/nginx/conf.d (eg /etc/nginx/conf.d/default.conf)
+# See: https://hub.docker.com/_/nginx
+
+# web below is a docker service and it uses an image
+web:
+  image:  my-site-nginx
+  volumes:
+    - ./templates:/etc/nginx/templates 
+    - ./webapp:/usr/share/nginx/html/my-web-app
+  ports:
+    - "6085:85"
+  environment:
+    - NGINX_HOST="*"
+    - NGINX_PORT=85
+  
