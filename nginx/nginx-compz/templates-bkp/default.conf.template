@@ -1,8 +1,8 @@
 # This configuration file will be stored in /etc/nginx/conf.d as default.conf
 server {
-    # customization, we use 85 instead of 80
-    listen       85;
-    listen  [::]:85;
+    # customization, we use ${NGINX_PORT} instead of 80
+    listen       ${NGINX_PORT};
+    listen  [::]:${NGINX_PORT};
     server_name  localhost;
 
     #access_log  /var/log/nginx/host.access.log  main;
@@ -44,3 +44,4 @@ server {
     #    deny  all;
     #}
 }
+There 

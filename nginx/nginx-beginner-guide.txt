@@ -1,0 +1,37 @@
+// See: https://nginx.org/en/docs/beginners_guide.html
+
+// Reload nginx 
+// Sends the SIGHUP signal to nginx 
+docker exec 91c321955087 nginx -s reload 
+
+// Stop nginx gracefully
+// Note that if the docker container is running with a restart policy of always, the container as well as nginx will soon after be restarted
+docker exec 91c321955087 nginx -s quit
+
+// process ID of nginx master process is written by default to nginx.pid in 
+// direcotry /usr/local/nginx/logs or /var/run 
+cat /var/run/nginx.pid 
+
+// We can use this pid to stop nginx using the kill command 
+// Supposing our pid is 1, we can do, from the docker container shell 
+kill -s QUIT 1 
+
+// In an nginx configuration file,
+// The outermost context is called the main context,
+// The events and http directives reside inside the main context,
+// server resides in the http context 
+// location resides inside the server context .
+http {
+    server {
+        location {
+        }
+    }
+}
+events {
+}
+
+// a configuration file may include several server blocks 
+// distinguished by the ports on which they listen to and by server names.
+
+// The URI in the request is tested against the location directive defined inside the 
+// server block 

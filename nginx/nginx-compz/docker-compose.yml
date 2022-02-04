@@ -5,11 +5,17 @@
 # web below is a docker service and it uses an image
 web:
   image:  my-site-nginx
+  restart: always
   volumes:
     - ./templates:/etc/nginx/templates 
     - ./webapp:/usr/share/nginx/html/my-web-app
+    - ./data/www:/data/www
+    - ./data/images:/data/images
+    - ./conf.d:/etc/nginx/conf.d
   ports:
     - "6085:85"
+    - "6082:82"
+    - "6080:80"
   environment:
     - NGINX_HOST="*"
     - NGINX_PORT=85

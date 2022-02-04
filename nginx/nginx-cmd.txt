@@ -56,8 +56,17 @@ Compress-Archive .\bienvenue-img bi.zip
 // Note: For some reason imported image is not runnable
 docker import bienvenue-img my-imported-bienvenue 
 
+// Execute a command inside a docker container 
+docker exec nginx-compz_web_1 nginx -s reload 
 
-// Start all containers related to the application stack defined in docker-compose.yml 
+// Connect to a shell inside a container 
+docker exec -it nginx-compz_web_1 sh 
+
+
+//// Docker compose ////
+
+
+// Start or recreate all containers related to the application stack defined in docker-compose.yml 
 docker-compose up 
 
 // Display running processes using docker-compose 
@@ -73,5 +82,11 @@ docker-compose ps
 docker cp nginx-compz_web_1:/etc/nginx/conf.d/custom.conf d2.conf
 
 
+// Restart docker-compose services 
+docker-compose restart 
+
+
+// See and follow docker-compose logs 
+docker-compose logs --follow 
 
 
