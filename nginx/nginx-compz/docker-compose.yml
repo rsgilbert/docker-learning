@@ -11,6 +11,7 @@ web:
     - ./webapp:/usr/share/nginx/html/my-web-app
     - ./data/www:/data/www
     - ./data/images:/data/images
+    - ./data/uploads:/data/uploads
     - ./conf.d:/etc/nginx/conf.d
   ports:
     - "6085:85"
