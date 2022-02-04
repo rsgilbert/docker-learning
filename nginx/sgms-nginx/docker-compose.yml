@@ -1,0 +1,9 @@
+web:
+  image: sgms-nginx
+  restart: always 
+  volumes:
+    - ./conf.d:/etc/nginx/conf.d
+    - ./cert:/etc/nginx/cert
+
+  ports:
+    - "6080:80"

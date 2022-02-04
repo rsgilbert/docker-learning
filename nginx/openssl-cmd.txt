@@ -1,0 +1,8 @@
+// Extract public and private certificate from pfx keystore
+// See: https://blog.knoldus.com/easiest-way-to-setup-ssl-on-nginx-using-pfx-files/
+
+// extract crt from pfx 
+openssl pkcs12 -in .\cert\NavServiceCert.pfx -clcerts -nokeys -out cert\nav-service-cert-crt.crt 
+
+// extract the private key from pfx 
+openssl pkcs12 -in .\cert\NavServiceCert.pfx -nocerts -nodes -out .cert\nav-service-cert-private-key.pem 
